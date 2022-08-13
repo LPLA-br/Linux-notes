@@ -1,0 +1,231 @@
+COMANDOS COMUNS EM SISTEMAS LINUX
+
+*Commando é um programa executável presente em
+/bin ou /sbin ou /usr/bin ou /usr/sbin ou
+/usr/local/bin ou /usr/local/sbin
+
+*programas que tem envolvimento com administração do sistema ficam em /sbin
+Apenas o superusuário root pode utilizar programas do diretório /sbin
+exemplos; fdisk, umount, shutdown, reboot, mount e etc...
+
+COMO OBTER AJUDA ?
+	Através dos manuais de sistema man(1) em qualquer sistema unix e linux:
+		man NOME_DO_PROGRAMA, COMANDO, BIBLIOTECA, ARQUIVO_DE_CONFIGURAÇÃO...
+		man man		para ver o manual do o manual man(1)
+
+	apropos(1) procura por páginas de manual de usuário por nomes e descrições e lista-os.
+		apropos NOME_DO_PROGRAMA, COMANDO, BIBLIOTECA, ARQUIVO_DE_CONFIGURAÇÃO...
+
+	imprimir ajuda resumida do comando no terminal.
+		help NOME
+		NOME --help
+		NOME -h
+
+	whatis(1) mostra descrições simples de um programa em uma linha.
+		whatis NOME_DO_PROGRAMA, COMANDO, BIBLIOTECA, ARQUIVO_DE_CONFIGURAÇÃO...
+		
+	No gnu/linux também temos o info(1)
+
+	O diretório /usr/share/doc contém Documentação de todos os programas instalados no sistema.
+
+	comando composto para mostrar descrição em uma linha de todos programas em /bin.
+		ls -1 /bin | xargs -l1 whatis | less
+	em /sbin:
+		ls -1 /sbin | xargs -l1 whatis | less
+
+__COMANDOS_BÁSICOS___PARA_DETALHES_LEIA_OS_MANUAIS_
+
+USUÁRIOS E GRUPOS:
+su - trocar de usuário (exit para deslogar).
+users - imprime os nomes dos usuários logados no host atual.
+passwd - mudar sua senha de usuário (ou de outro usuário).
+who - mostra os usuários logados no sistema.
+whoami - mostra o nome do usuário em que você está logado.
+id - imprime identidade de usuário, de grupo e lista a que grupos pertence.
+chown - altera o proprietário de um arquivo.
+chgrp - altera o grupo de um arquivo.
+chmod - altera as permissões de um arquivo.
+chattr - modifica os atributos de um arquivo.
+lsattr - lista os atributos de um arquivo.
+useradd - criar conta de usuário do sistema pela linha de comando.
+usermod - modificar conta de usuário.
+userdel - deletar conta de usuário e seus arquivos.
+groupadd - cria um grupo no sistema.
+groupmod - Modificar um grupo existente.
+groupdel - remover um grupo no sistema.
+chfn - mudar nome e informações pessoais do usuário(usado pelo comando finger).
+pinky- mostra informações do usuário.
+finger - mostra informações do usuário de forma mais completa.
+last - imprime o regisro de logins do sistema.
+
+SISTEMA:
+systemctl - Controlar o systemd e o gerenciador de serviços(em distros linux com systemd).
+journalctl - systemd lhe mostra registro do sistema.
+uname - imprime informação do sobre o sistema (-a para tudo).
+free - mostra o status da da memória RAM (-m mostrar em megabytes).
+top - mostra processos do linux de forma dinâmica (-d1 para atualizar em segundos).
+arch - imprime nome do hardware da máquina.
+lsmod - mostra o status dos modulos do kernel linux.
+lscpu - mostra informação sobre a aquitetura do CPU.
+lspci - listar todos os dispositivos PCI.
+lsblk - lista os dispositivos de bloco (pendrive, ssd, hdd etc..) sda sdb ...
+blkid -  localiza e imprime atributos de dispositivos de bloco (pendrive, ssd, hdd...)
+parted - programa de manipulação de partições (faz o mesmo que fdisk, podendo redimesionar partições)
+fdisk -  programa de particionamento de discos.
+cfdisk - programa em particionamento de discos fácil (com interface ncourses).
+mkfs - formatar partição com um sistema de arquivos ex(mkfs.ext4, mkfs.ntfs ...)
+fsck - checar e reparar um sistema de arquivo não montado ex(fsck.ext4 fsck.fat fsck.exfat ...)
+wipefs - pode remover sistema de arquivos, raid ou assinatura de tabela de partições.
+uptime - mostra quanto tempo o sistema está em execução.
+time * - usa outro comando como argumento e mostra o tempo de execução deste.
+cal - calendário.
+date - mostra data e hora.
+ldconfig - configurar linkador dinâmico de tempo de execução(bibliotecas usadas pro programas).
+ldd - imprimir depedências de um executávl de bibliotecas compartilhadas.
+cron - daemon para executar tarefas agendadas.
+crontab - cron tarefas para usuários individuais.
+chsh - mudar o shell padrão do sistema.
+
+ARQUIVOS:
+stat - mostra o status de um arquivo ou do sistema de arquivos.
+cd - mudar dirétorio, navegar pelos diretórios.
+ls - imprime na tela o conteúdo do diretório em que você se encontra.
+tree - imprime visualmente em interface de texto a árvore de diretórios (requer instalação)
+dir - lista o conteúdo de um diretório (como no Windows)
+rm - remove (deleta) o arquivo passado por parâmetro(-r para deleção recursiva).
+shred - sobrescreve arquivo byte por byte e opcionalmente apaga-o depois(deleta de verdade)
+more - exibe o conteúdo de um texto de forma simples.
+less - exibe o conteúdo de um texto de forma mais prática.
+mv - move e também renomeia arquivos.
+dd - converte e copia um arquivo (origem e destino. Útil para gravar iso's em um dispositivo).
+mkdir - cria um ou vários diretórios.
+rmdir - remove um diretório vazio.
+cp - copia um arquivo de um diretório de origem para um diretório de destino.
+diff - acha a diferença entre dois arquivos e ou diretórios.
+pwd - imprime o caminho até o diretório onde você está.
+mount - montar sistema de arquivos em um diretório especificado por você.
+umount - desmontar sistema de arquivos montado em um diretório.
+findmnt - listar todos os sistemas de arquivos montados ou busca por um.
+eject - ejetar uma mídia removível (alternativa a umount)
+file - determina o tipo do arquivo.
+df - mostra o status do armazenamento dos dispositivos de bloco (-h human readable)
+du - mostra o espaço ocupado pelos arquivos do diretório em que você se econtra (-h human readable)
+grep - imprime linhas que coicidem com padrões passados nos argumentos.
+cat - une fragmentos para formar arquivo (concatenação) ou imprime o seu conteúdo no terminal.
+split - corta um arquivo em fragmentos (pedaços)
+pr - converte arquivos de texto para impressão(imprime no terminal)
+touch - "tocar" altera o horário um arquivo para aquele momento ou cria um arquivo vazio novo.
+md5sum - computa e checa mensagem de digestão MD5 (checar integridade de arquivos)
+sha256sum - computa e checa mensagem de digestão SHA256 (checar integridade de arquivos)
+sha515sum - computa e checa mensagem de digestão SHA512 (checar integridade de arquivos)
+od - faz o dump de um arquivo em octal decimal e hexadecimal
+gzip - comprimir ou expandir arquivos .zip
+tar - utilitário criar ou expandir arquivos .tar
+ar - criar, modificar e extrair arquivos .ar.
+unzip - utilitário de descompactar arquivos .zip
+unrar - utilitário de descompactar arquivos .rar
+head - imprime as primeiras N linhas de um arquivo de texto.
+tail - imprime as últimas N linhas de um arquivo de texto.
+sort - ordenar linhas de arquivos de texto ou saída de outros programas.
+ln - cria links simbólicos entre arquivos (como se fosse um portal que leva para outro diretório...)
+wc - imprime número de newlines\n(enters), palavras e caracteres de um texto.
+sed - editor stream para filtrar e transformar texto (útil em scripts)
+awk - escaneador de padrões e linguagem de processamento de texto(útil em scripts)
+cut - corta seções especificadas de cada linha de um arquivo de texto.
+
+TERMINAL:
+exit - causa terminação normal de processo do shell.
+clear - limpa a tela do terminal.
+ps - mostra processos e seus pids de forma estática (veja o manual)
+kill - envia sinal para um processo usando seu número PID.
+xargs - permite que você execute o mesmo comando em um grande número de arquivos.
+history - imprime uma lista contendo os últimos comandos digitados por VOCÊ.
+seq - imprimir uma sequência de números.
+env - imprimie variáveis de ambiente do seu usuário.
+watch - executa periódicamente um commando para "assistir-lhe" a saída.
+
+GERENCIAMENTO DE PACOTES (softwares de seu sistema):
+	DEBIAN LINUX
+		apt - gerenciador de pacotes de auto nível, vide suas sub unidades.
+		dpkg - manuseador de pacotes de baixo nível, vide suas sub unidades.
+	ARCH LINUX
+		pacman - gerenciador de pacotes absoluto do arch linux.
+		makepkg - utilitário para compilar um pacote a partir do código fonte (AUR)
+
+INTERNET (estas ferramentas variam muito):
+wget - faz download de site ou arquivo (veja o manual)
+curl - ferramenta para transferir dados para um ou de um servidor.
+ip - mostrar / manipular roteamento, dispositivos de rede, interfaces e tuneis .
+ping - mandar pacotes para testar rede.
+iptables - ferramenta de administração para filtragem de pacotes e NAT (firewall avançado,frontend do netfilter)
+iw - mostra / manipula dispositivos sem fio e suas configurações
+networkctl - consulta o status dos links de conexão (systemd)
+
+-----------------------------------------------------------------------
+
+_O_PODER_DO_TERMINAL_
+
+	símbolo:
+	| pipe direciona a saída(stdin) de um comando para entrada d'outro exemplo:
+		ls | grep diretorio/
+
+	; comandos podem ser executados em sequência exemplo:
+		ls /home/fulano ; cd /home/fulano ; nano texto.txt
+
+	> direciona a saída (stdout) do comando para um arquivo a ser criado. 
+	  Se existe um arquivo com mesmo nome do que será criado, o já
+	  existente de mesmo nome será substituido (sobrescrito), também pode
+	  criar um novo arquivo vazio. exemplos:
+		cal > texto.txt
+		echo "substituído" > texto.txt
+		> novovazio.txt
+
+	>> direciona a saída (stdout) do comando para um arquivo mas ao
+	  ao contrário de > não substitui o arquivo pré-existente de
+	  mesmo nome, apenas anexa o conteúdo após a linha final.
+	  Exemplos:
+		echo "Goku disse:" > goku.txt
+		echo "Vegeta olha bem!" >> goku.txt
+
+	< direciona o arquivo de texto para entrada(stdin) do comando
+		Exemplo:
+		ls < listaDeDiretorios.txt
+		sort < listaDePalavrasDesordenadas.txt
+		|
+		Exemplo2 comando composto com >:
+		sort < listaDePalavrasDesordenadas.txt > listaDePalavrasOrdenadas.txt
+		|
+		Exemplo3 comando composto com >>:
+		sort < OutralistaDePalavrasDesordenadas.txt >> listaDePalavrasOrdenadas.txt
+
+	* diretórios e subdiretórios em um nível ou *parte_do_nome:
+		ls coisas/*
+		ls coisas/*.js
+		ls programa.*
+		ls *.txt
+
+	**/* todos_dirétorios/todos_arquivos
+
+	.	siginifica o diretório onde você está(corrente).
+		Experimente:
+			ls .
+			find . -name NOME_DO_ARQUIVO
+
+	..	siginifica o diretório pai do diretório onde você está.
+		cd ..	 	vai voltar um diretório
+		cd ../.. 	vai voltar dois diretórios.
+
+EXTRAS:
+	mouse não operacional ?
+	controlar ponteiro pelo teclado numérico (xorg):
+		setxkbmap -option keypad:pointerkeys
+			ativar e desativar:
+				ctrl+shift+numlock
+			alterando função da tecla "5":
+				botão direito do mouse /
+				botão esquerd do mouse -
+	remover diretório não vazio use -r de recursivo:
+		rm -r NOME_DO_DIRETÓRIO
+
+
+Escrito por luiz paulo de lima araújo 2020 - 2022.
