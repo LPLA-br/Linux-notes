@@ -132,3 +132,11 @@ BUGS E LIMITAÇÕES
  afetará a capacidade de escrever para descritores de arquivo já existentes.
  * A opção 'j' só é útil para sistemas de arquivos ext3 e ext4.
  * A opção 'D' só é útil no kernel Linux 2.5.19 e posterior.
+
+DESTAQUES
+ a - Somente escrita anexativa, nada de deleção ou sobrescrita.
+ c - Compactação automática do arquivo no disco pelo kernel.
+ i - Arquivo não pode ser: alterado, excluído, renomeado, linkado por niguém (root).
+ s - Os blocos do arquivo são zerados e gravados (deleção segura do disco).
+ S - Modificações são imediatamente gravadas no disco.
+ u - Quando excluído, o arquivo tem seu conteúdo salvo.

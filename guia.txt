@@ -42,6 +42,7 @@ passwd - mudar sua senha de usuário (ou de outro usuário).
 who - mostra os usuários logados no sistema.
 whoami - mostra o nome do usuário em que você está logado.
 id - imprime identidade de usuário, de grupo e lista a que grupos pertence.
+groups - imprime a que grupos pertence o usuário passado na linha de comando.
 chown - altera o proprietário de um arquivo.
 chgrp - altera o grupo de um arquivo.
 chmod - altera as permissões de um arquivo.
@@ -137,11 +138,13 @@ TERMINAL:
 exit - causa terminação normal de processo do shell.
 clear - limpa a tela do terminal.
 ps - mostra processos e seus pids de forma estática (veja o manual)
+pstree - imprime árvore de processos no terminal.
 kill - envia sinal para um processo usando seu número PID.
 xargs - permite que você execute o mesmo comando em um grande número de arquivos.
 history - imprime uma lista contendo os últimos comandos digitados por VOCÊ.
 seq - imprimir uma sequência de números.
-env - imprimie variáveis de ambiente do seu usuário.
+env - imprimie variáveis de ambiente do seu usuário atual.
+export - exporta a definição de uma nova variável de ambiente.
 watch - executa periódicamente um commando para "assistir-lhe" a saída.
 
 GERENCIAMENTO DE PACOTES (softwares de seu sistema):

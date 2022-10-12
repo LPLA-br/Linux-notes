@@ -1,0 +1,21 @@
+Variáveis de ambiente (muda de acordo com o usuário logado)
+
+Criar variável ambiente local ao shell atual:
+VAR=teste
+
+env - visualizar todas as variáveis de ambiente.
+echo $[NOME_DA_ENV_VAR] - mostra a variável de ambiente especificada.
+export - exporta, temporariamente, a variável passada em seus argumentos. Isso a torna global.
+	ex: export TEST=teste
+
+Incrementar variável pré-existente:
+PATH=$PATH:/home/Documentos/scriptsPessoais
+
+HOME= caminho absoluto até o diretório home do usuário.
+PATH= lista de diretórios em que o shell busca comandos para execução.
+
+Exemplo de variáveis gerais de ambiente
+$USER	usuário corrente
+$HOME	path para a home do usuário corrente
+$SHELL	shell corrente
+$PWD	diretório corrente
