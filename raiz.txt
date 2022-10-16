@@ -2,24 +2,31 @@
 fonte: http://www.bosontreinamentos.com.br/linux/a-estrutura-de-diretorios-do-linux/
 Contém adição de conteúdo de minha parte.
 
+Um arquivo pode ser:
+ESTÁTICO OU VARIÁVEL(Dinâmico)	ps: estático não quer dizer imutável.
+PERSISTENTE OU TEMPORÁRIO (respectivamente: mantém-se após reinicialização,
+é excluido após certo tempo)
+
+
 _Resumo_do_conteúdo____________________________________________________
 /bin	Binários executáveis do sistema.
 /boot	Arquivos estáticos do gerenciador de inicialização do sistema.
 /dev	Arquivos de Dispositivos do sistema.
-/etc	Arquivos de texto de configuração do sistema.
+/etc	Arquivos de texto de configuração do sistema. estático e persistente
 /home	Dirétorio com subdiretórios de cada usuário comum, inclui VOCÊ.
 /lib	Bibliotecas compartilhadas essenciais e modulos do kernel.
 /media	Contém pontos de montagem para midias removíveis.
 /mnt	Ponto de montagem temporária de sistemas de arquivos.
 /proc	Diretório virtual contendo informações do sistema.
-/root	Diretório home do superusuário root.
+/root	Diretório home do superusuário administrativo root.
 /sbin	Binários essenciais de administração do sistema.
 /sys	Diretório virtual contendo informações organizadas do sistema.
 /tmp	Arquivos temporários que são deletados no desligamento do sistema.
 /usr	Hieraquia secundária de diretórios.
-/var	Dados variáveis, como logs do sistema dentre outros.
+/var	Dados variáveis, como logs do sistema dentre outros. variáveis e persistentes
 /srv	Dados para serviços fornecidos pelo sistema.
 /opt	pacotes de aplicativos e programas adicionais.
+/run	Dados de tempo de execução com ID processos. variável e temporário
 _______________________________________________________________________
 
 
@@ -332,6 +339,7 @@ _______________________________________________________________________
 		/usr/local	Dados e programas específicos da máquina
 				local. Alguns subdiretórios incluem bin, sbin,
 				lib, share, include, entre outros.
+				Software personalizado localmente.
 		/usr/bin	Este é o diretório primário dos comandos
 				executáveis no sistema
 
@@ -366,6 +374,7 @@ _______________________________________________________________________
 		(serviço de FTP) e /var/www (serviço web HTTP) também são
 		encontrados dentro de /var.
 
+Veja a página de manual hler(1)
 Compilado por: Luiz Paulo de Lima Araújo 2020 - 2022
 _________________________________________________________________________
 

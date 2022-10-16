@@ -80,7 +80,7 @@ wipefs - pode remover sistema de arquivos, raid ou assinatura de tabela de parti
 uptime - mostra quanto tempo o sistema está em execução.
 time * - usa outro comando como argumento e mostra o tempo de execução deste.
 cal - calendário.
-date - mostra data e hora.
+date - mostra data e hora. veja o manual para expecificação de formato de data(date +%r)
 ldconfig - configurar linkador dinâmico de tempo de execução(bibliotecas usadas pro programas).
 ldd - imprimir depedências de um executávl de bibliotecas compartilhadas.
 cron - daemon para executar tarefas agendadas.
@@ -88,7 +88,6 @@ crontab - cron tarefas para usuários individuais.
 chsh - mudar o shell padrão do sistema.
 
 ARQUIVOS:
-stat - mostra o status de um arquivo ou do sistema de arquivos.
 cd - mudar dirétorio, navegar pelos diretórios.
 ls - imprime na tela o conteúdo do diretório em que você se encontra.
 tree - imprime visualmente em interface de texto a árvore de diretórios (requer instalação)
@@ -99,7 +98,7 @@ more - exibe o conteúdo de um texto de forma simples.
 less - exibe o conteúdo de um texto de forma mais prática.
 mv - move e também renomeia arquivos.
 dd - converte e copia um arquivo (origem e destino. Útil para gravar iso's em um dispositivo).
-mkdir - cria um ou vários diretórios.
+mkdir - cria um ou vários diretórios vazios (-p especifica subdiretórios).
 rmdir - remove um diretório vazio.
 cp - copia um arquivo de um diretório de origem para um diretório de destino.
 diff - acha a diferença entre dois arquivos e ou diretórios.
@@ -115,7 +114,8 @@ grep - imprime linhas que coicidem com padrões passados nos argumentos.
 cat - une fragmentos para formar arquivo (concatenação) ou imprime o seu conteúdo no terminal.
 split - corta um arquivo em fragmentos (pedaços)
 pr - converte arquivos de texto para impressão(imprime no terminal)
-touch - "tocar" altera o horário um arquivo para aquele momento ou cria um arquivo vazio novo.
+stat - mostra o status de um arquivo ou do sistema de arquivos.
+touch - "tocar" altera o carimbo de data/hora de um arquivo para agora ou cria um arquivo vazio novo.
 md5sum - computa e checa mensagem de digestão MD5 (checar integridade de arquivos)
 sha256sum - computa e checa mensagem de digestão SHA256 (checar integridade de arquivos)
 sha515sum - computa e checa mensagem de digestão SHA512 (checar integridade de arquivos)
@@ -166,7 +166,14 @@ networkctl - consulta o status dos links de conexão (systemd)
 
 -----------------------------------------------------------------------
 
-_O_PODER_DO_TERMINAL_
+ O_PODER_DO_SHELL
+
+ Elementos do Prompt:
+ [nomeUsuario@nomeMaquina diretórioTrabalho]$
+ $ = usuário comum.
+ # = administrador root (cuidado!)
+ 
+ Metacaracteres ; | / > >> < etcetera E diretórios
 
 	símbolo:
 	| pipe direciona a saída(stdin) de um comando para entrada d'outro exemplo:
@@ -210,13 +217,43 @@ _O_PODER_DO_TERMINAL_
 	**/* todos_dirétorios/todos_arquivos
 
 	.	siginifica o diretório onde você está(corrente).
+		Útil para evitar ter que digitar o caminho absoluto até o diretório
+		em que tu se econtra.
 		Experimente:
 			ls .
 			find . -name NOME_DO_ARQUIVO
+		Arquivo com seu nome iniciando com ponto são "ocultos".
+		Use ls -a para ver-los também. PS:(sua home tem vários "ocultos")
 
 	..	siginifica o diretório pai do diretório onde você está.
-		cd ..	 	vai voltar um diretório
-		cd ../.. 	vai voltar dois diretórios.
+		Útil para navegar entre diretórios de forma relativa ou voltar diretórios.
+		cd ..	 	 vai voltar um diretório
+		cd ../.. 	 vai voltar dois diretórios.
+		cd ../Documentos se tu esta em Downloads(sua home) e executa este comando voltará um
+				 diretório e entrará em Documentos (dir da sua home)
+		Use o comando pwd para saber o caminho absoluto de onde você está.
+
+	\ caractere de escape que diz ao bash que não deve haver a interpretação do Metacaractere.
+	\ Continuação de comandos mui longos que estouram a linha com caractere de escape
+	exemplo de saída (considere ENTER como a tecla ENTER):
+		[user@host]$ head -n 3 \ENTER
+		> /etc/passwd \ENTER
+		> /etc/groups \ENTER
+	note que o simbolo maior que indica a newline. ENTER sem \ executará a longa declaração.
+
+	![NUMERO] veja o número do comando digitando anteriormente e execute-o
+	![STRING] execute o ultimo comnado que no nome bate.
+	!! execute o último comando digitado por ti.
+	exemplo:
+		[user@host]$ history | tail -n 2
+		34 less /etc/passwd
+		35 date +%r
+		[user@host]$ !35
+		date +%r
+		09:01:22
+		[user@host]$ !date #executa ultimo comando date do histórico "Cuidado"
+		date +%r
+		09:01:27
 
 EXTRAS:
 	mouse não operacional ?
@@ -229,6 +266,10 @@ EXTRAS:
 				botão esquerd do mouse -
 	remover diretório não vazio use -r de recursivo:
 		rm -r NOME_DO_DIRETÓRIO
+
+	cd - (cd seguido de menos) serve para ir "de lá para cá e de cá para lá" entre o
+	ultimo diretório que tu estava e o que estais agora.
+	cd sem argumento te teletransportará para sua home (é o mesmo que cd ~)
 
 
 Escrito por luiz paulo de lima araújo 2020 - 2022.
