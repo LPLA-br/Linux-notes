@@ -9,31 +9,52 @@ Apenas o superusuário root pode utilizar programas do diretório /sbin
 exemplos; fdisk, umount, shutdown, reboot, mount e etc...
 
 COMO OBTER AJUDA ?
-	Através dos manuais de sistema man(1) em qualquer sistema unix e linux:
-		man NOME_DO_PROGRAMA, COMANDO, BIBLIOTECA, ARQUIVO_DE_CONFIGURAÇÃO...
-		man man		para ver o manual do o manual man(1)
+
+	Através dos manuais de sistema man(1) em qualquer sistema UNIX® e LINUX:
+	man <padrãoASerProcurado>
+	man man		para ver o manual do o manual man(1)
+	SESSÕES D0 MANUAL--man(1)-------------------------------------------------------------------
+	1 comandos de usuário (executável e programas shell)
+	2 chamadas de sistema (rotinas do kernel invocadas a partir do espaço do usuário)
+	3 funções de biblioteca (fornecidas por bibliotecas dos programas)
+	4 arquvos especiais (como arquivos de dispositivos)
+	5 formatos de arquivos (para muitos arquivos de configuração)
+	6 jogos (seção histórica para softwares de lazer)
+	7 convenções, padrões e páginas diversas(protocolos, sistemas de arquivo e etc..)
+	8 administração do sistema e comandos com privilégios altos (tarefas de manutenção)
+	9 api do kernel linux (chamadas internas de kernel)
+	---------------------------------------------------------------------------------------------
 
 	apropos(1) procura por páginas de manual de usuário por nomes e descrições e lista-os.
 		apropos NOME_DO_PROGRAMA, COMANDO, BIBLIOTECA, ARQUIVO_DE_CONFIGURAÇÃO...
+		este comando tem o mesmo efeito de man -k padrão
 
-	imprimir ajuda resumida do comando no terminal.
-		help NOME
+	whereis(1) lhe mostra onde se encontra o executável e seus manuais no sistema.
+
+	imprimir ajuda resumida específica do comando ou software no terminal.
+	Muitos programas tem as opções -h ou --help para mostrar uma ajuda rápida.
 		NOME --help
 		NOME -h
 
-	whatis(1) mostra descrições simples de um programa em uma linha.
-		whatis NOME_DO_PROGRAMA, COMANDO, BIBLIOTECA, ARQUIVO_DE_CONFIGURAÇÃO...
+	whatis(1) mostra descrição em uma linha de um programa.
+		whatis <padrãoASerProcurado>
 		
-	No gnu/linux também temos o info(1)
+	Além do man(1) também temos o info(1) e pinfo(1) que são manuais mais detalhados
+	criados pelo projeto gnu.
+		pinfo <padrãoASerProcurado>
 
 	O diretório /usr/share/doc contém Documentação de todos os programas instalados no sistema.
+	Usar o navegador para explorar o diretório acima descrito pode ser bem prático.
+		firefox /usr/share/doc
+	
+	ATENÇÃO leia os manuais com atenção e paciência.
+	utilize bastante man(1) e ou info(1) e pinfo(1)
 
-	comando composto para mostrar descrição em uma linha de todos programas em /bin.
-		ls -1 /bin | xargs -l1 whatis | less
-	em /sbin:
-		ls -1 /sbin | xargs -l1 whatis | less
+__COMANDOS_BÁSICOS___PARA_DETALHES_LEIA_OS_MANUAIS_man(1)_E_info(1)_
 
-__COMANDOS_BÁSICOS___PARA_DETALHES_LEIA_OS_MANUAIS_
+AJUDA
+man - abre manual espeficicado $(man man)
+info - mainuais detalhados do projeto gnu.
 
 USUÁRIOS E GRUPOS:
 su - trocar de usuário (exit para deslogar).
@@ -54,9 +75,10 @@ userdel - deletar conta de usuário e seus arquivos.
 groupadd - cria um grupo no sistema.
 groupmod - Modificar um grupo existente.
 groupdel - remover um grupo no sistema.
-chfn - mudar nome e informações pessoais do usuário(usado pelo comando finger).
+chage - mudar informação de expiração da senha para um usuário.
+gpasswd - administra o arquivo /etc/group (Um groupmod avançado).
+chfn - mudar nome e informações pessoais do usuário (GECOS).
 pinky- mostra informações do usuário.
-finger - mostra informações do usuário de forma mais completa.
 last - imprime o regisro de logins do sistema.
 
 SISTEMA:
@@ -135,6 +157,7 @@ awk - escaneador de padrões e linguagem de processamento de texto(útil em scri
 cut - corta seções especificadas de cada linha de um arquivo de texto.
 
 TERMINAL:
+tee - desvia fluxo de stdout ou stderr para arquivo ou shell (pipes).
 exit - causa terminação normal de processo do shell.
 clear - limpa a tela do terminal.
 ps - mostra processos e seus pids de forma estática (veja o manual)
@@ -144,6 +167,7 @@ xargs - permite que você execute o mesmo comando em um grande número de arquiv
 history - imprime uma lista contendo os últimos comandos digitados por VOCÊ.
 seq - imprimir uma sequência de números.
 env - imprimie variáveis de ambiente do seu usuário atual.
+set - 
 export - exporta a definição de uma nova variável de ambiente.
 watch - executa periódicamente um commando para "assistir-lhe" a saída.
 
@@ -173,7 +197,7 @@ networkctl - consulta o status dos links de conexão (systemd)
  $ = usuário comum.
  # = administrador root (cuidado!)
  
- Metacaracteres ; | / > >> < etcetera E diretórios
+ Introdução a ações no shell:
 
 	símbolo:
 	| pipe direciona a saída(stdin) de um comando para entrada d'outro exemplo:
@@ -214,11 +238,9 @@ networkctl - consulta o status dos links de conexão (systemd)
 		ls programa.*
 		ls *.txt
 
-	**/* todos_dirétorios/todos_arquivos
-
 	.	siginifica o diretório onde você está(corrente).
 		Útil para evitar ter que digitar o caminho absoluto até o diretório
-		em que tu se econtra.
+		em que tu se encontra.
 		Experimente:
 			ls .
 			find . -name NOME_DO_ARQUIVO
@@ -254,6 +276,8 @@ networkctl - consulta o status dos links de conexão (systemd)
 		[user@host]$ !date #executa ultimo comando date do histórico "Cuidado"
 		date +%r
 		09:01:27
+
+	VEJA: Globbing.txt stdinouterr.txt
 
 EXTRAS:
 	mouse não operacional ?
