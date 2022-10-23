@@ -6,7 +6,7 @@ Descrição
 Cada arquivo do sistema está associado a um usuário (dono) e a um grupo.
 O dono de um arquivo pode definir quem tem acesso ao arquivo e qual tipo
 de acesso é permitido(leitura, gravação e ou execução). Isto é chamado de
-permissão de acesso.
+permissão de acesso ou modo do arquivo.
 
 Níveis de acesso
 As permissões dos arquivos linux são definidas por quatro dígitos que
@@ -122,3 +122,41 @@ S		grupo	SGID
 s		grupo	SGID+permissão de execução para o grupo
 T		outros	sticky bit
 t		outros	sticky bit+permissão de execução para outros
+
+---------------------------------------------------------------------------
+RH124 - Red Hat©
+
+Permissão	Efeitos_em_aquivos	Efeitos_em_diretórios
+r		O conteúdo pode ser	O conteúdo do dir pode
+		lido.			ser listado(apenas nome dos dirs)
+
+w		O conteúdo pode ser	Qualquer arquivo do dir pode ser
+		alterado.		criado ou apagado.
+
+x		Os arquivos podem ser	O dir pode ser tornar diretório
+		executados como		de trabalho atual.(exige permissão
+		comandos		read para listar os arquivos)
+
+---------------------------------------------------------------------------
+Permissão_especial	Efeitos_em_aquivos	Efeitos_em_diretórios
+Quarto_dígito
+
+u+s (suid)		O arquivo é executado	Sem efeito.
+4			como o usuário propri-
+			etário do arquivo,não
+			como o que o executou.
+
+g+s (sgid)		O arquivo é executado	Arquivos novos criados no dir terão
+2			como o grupo propri-	seu proprietário de grupo definido
+			etário do arquivo.	de maneira a corresponder ao propi-
+						etário do grupo do dir.
+
+o+t (sticky)		Sem efeito.		Os usuários com acesso de gravação
+1						no diretório só podem apagar os
+						arquivos que pertercem a si próprios.
+						Não podem, eles, apagar ou forçar
+						salvamento de arquivos de outros
+						usuários.
+
+
+---------------------------------------------------------------------------
