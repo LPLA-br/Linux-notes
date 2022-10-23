@@ -71,10 +71,20 @@
 
 </p>
 
-### Capítulo 7 - Console de acesso a arquivos
+### Capítulo 7 - Controle de acesso a arquivos
 
 <p>
-	info coreutils (seção 13)
+	info coreutils (seção 13)<br>
+	ls(1) chmod(1) chown(1) chgrp(1)<br>
+	unmask(1)
+</p>
+
+### Capítulo 8 - Monitoramento e gerenciamento de processos no linux
+
+<p>
+	info libc signal (seção 24)<br>
+	info libc processes (seção 26)<br>
+	ps(1) signal(7)
 </p>
 
 #### HAVE A GOOD READ!
