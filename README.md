@@ -84,8 +84,12 @@
 <p>
 	info libc signal (seção 24)<br>
 	info libc processes (seção 26)<br>
-	ps(1) signal(7)
+	ps(1) signal(7)<br>
+    bash(1) builtins(1) ps(1) sleep(1)<br>
+    kill(1) killall(1) pgrep(1) pkill(1) pstree(1) w(1)<br>
 </p>
+
+
 
 #### HAVE A GOOD READ!
 

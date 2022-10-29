@@ -54,9 +54,11 @@ __COMANDOS_BÁSICOS___PARA_DETALHES_LEIA_OS_MANUAIS_man(1)_E_info(1)_
 
 AJUDA
 man - abre manual espeficicado $(man man)
-info - mainuais detalhados do projeto gnu.
+info - manuais detalhados do projeto gnu.
+pinfo - manuais detalhados do projeto gnu(visualizador).
 
 USUÁRIOS E GRUPOS:
+w - mostra quem esta logado e o que esta fazendo.
 su - trocar de usuário (exit para deslogar).
 users - imprime os nomes dos usuários logados no host atual.
 passwd - mudar sua senha de usuário (ou de outro usuário).
@@ -173,20 +175,23 @@ watch - executa periódicamente um commando para "assistir-lhe" a saída.
 
 GERENCIAMENTO DE PACOTES (softwares de seu sistema):
 	DEBIAN LINUX
-		apt - gerenciador de pacotes de auto nível, vide suas sub unidades.
+		apt - gerenciador de pacotes de auto nível
 		dpkg - manuseador de pacotes de baixo nível, vide suas sub unidades.
 	ARCH LINUX
 		pacman - gerenciador de pacotes absoluto do arch linux.
 		makepkg - utilitário para compilar um pacote a partir do código fonte (AUR)
 
-INTERNET (estas ferramentas variam muito):
-wget - faz download de site ou arquivo (veja o manual)
+INTERNET:
+wget - faz download de site ou arquivo.
 curl - ferramenta para transferir dados para um ou de um servidor.
 ip - mostrar / manipular roteamento, dispositivos de rede, interfaces e tuneis .
 ping - mandar pacotes para testar rede.
 iptables - ferramenta de administração para filtragem de pacotes e NAT (firewall avançado,frontend do netfilter)
 iw - mostra / manipula dispositivos sem fio e suas configurações
 networkctl - consulta o status dos links de conexão (systemd)
+links - navegador web cli(requer instalação)
+nmcli - utilitário de configuração do networkmanager cli(Network Manager).
+nmtui - utilitário de configuração do networkmanager tui(Network Manager).
 
 -----------------------------------------------------------------------
 
