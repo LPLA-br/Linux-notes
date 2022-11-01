@@ -175,14 +175,15 @@ que geram um sinal podem ser de um erro, um evento externo
 explicito de um comando de envio de sinal ou de uma sequência de
 teclado.
 
+
 SINAL	NOME_ABREVIADO	DEFINIÇÃO
 1	HUP		Hangup(Desligar)
 2	INT		keyboard_interrupt
 3	QUIT		keyboard_quit
-9	KILL		matar,Unblockable
-15	TERM		Terminar (padrão)
-18	CONT		continuação
-19	STOP		Stop,Unblockable
+9	KILL		matar,Unblockable	* interessantes
+15	TERM		Terminar (padrão)	*
+18	CONT		continuação		*
+19	STOP		Stop,Unblockable	*
 20	TSTP		keyboard_stop
 
 1  Usado para comunicar a finalização do processo de controle de um terminal.
@@ -229,7 +230,7 @@ kill -l		#lista de sinais
 -Para vários processos use killall(1)
 
 -Para vários processos que correspondam a um critério use pkill(1)
-Critérios seguidos por pkill(1)
+Critérios seguidos por pkill(1). filtre com pgrep
  Command - Processos com um nome de comando correspondente ao padrão.
  UID - Processos de propriedade de uma conta de usuário Linux, efetiva ou real.
  GID - Processos de propriedade de uma conta de grupo Linux, efetiva ou real.
@@ -237,5 +238,8 @@ Critérios seguidos por pkill(1)
  Terminal - Processos em execução em um terminal de controle específico. 
 
 IMPORTANTE
+Antes de um SIGKILL siga nesta linha de tentativa:
 SIGTERM → SIGINT → SIGKILL
+
+MONITORAMENTO 
 
