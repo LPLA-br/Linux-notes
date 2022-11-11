@@ -227,19 +227,68 @@ despejar  ctrl+\
 kill -NOME PID
 kill -l		#lista de sinais
 
--Para vários processos use killall(1)
+-Para vários processos com base no nome use killall(1)
 
 -Para vários processos que correspondam a um critério use pkill(1)
-Critérios seguidos por pkill(1). filtre com pgrep
+Critérios seguidos por pkill(1).
  Command - Processos com um nome de comando correspondente ao padrão.
  UID - Processos de propriedade de uma conta de usuário Linux, efetiva ou real.
  GID - Processos de propriedade de uma conta de grupo Linux, efetiva ou real.
  Parent - Processos filhos de um determinado processo pai.
  Terminal - Processos em execução em um terminal de controle específico. 
 
+pgrep(1)
+ Semelhante ao pkill(1) só que apenas para filtragem
+ de processos por padrões seguido de exibição.
+
 IMPORTANTE
-Antes de um SIGKILL siga nesta linha de tentativa:
+Antes de um SIGKILL, siga nesta linha de tentativa:
 SIGTERM → SIGINT → SIGKILL
 
-MONITORAMENTO 
+MONITORAMENTO DE ATIVIDADE DE PROCESSO 
+
+MÉDIA DE CARGA
+A média de carga é uma medida fornecida pelo kernel do Linux
+que é uma maneira simples de representar a carga do sistema 
+percebida ao longo do tempo. Ela pode ser usada como um indicador 
+aproximado de quantas solicitações de recursos do sistema estão 
+pendentes e para determinar se a carga do sistema está aumentando 
+ou diminuindo com o tempo. 
+
+A cada cinco segundos, o kernel coleta o número de carga atual, com 
+base no número de processos em estados executáveis e ininterruptos. 
+Esse número é acumulado e informado como uma média móvel exponencial 
+nos últimos 1, 5 e 15 minutos.
+
+Determine se o sistema está está ou não efrentando esperas significativas:
+lscpu(1) lhe mostrará o número de cpus. Divida os válores médios de carga
+exibidos por uptime pelo número de cpus do sistema. Valor abaixo de um
+indica uso satisfatório de recursos e tempos de espera mínimos, acima de 1
+indica saturação de recursos e certo atraso de processamento.
+
+...
+
+MONITORAMENTO DE PROCESSOS EM TEMPO REAL
+top(1) ao contrário de ps(1), que é estático, temos top(1)
+como um mostrador de processos dinâmico, configurável e personalizável.
+Colunas:
+PID - id de processo
+USER - proprietário do processo
+VIRT - A memória virtual (VIRT) é toda a memória que o processo está
+       usando, incluindo as definições residentes, as bibliotecas compartilhadas
+       e as páginas de memória mapeadas ou trocadas.
+       (Chamados de VSZ no comando ps).
+RES - A memória residente (RES) é a memória física usada pelo processo incluindo
+      objetos residentes compartilhados (RSS em ps(1))
+S - Estado de processo:
+	D=Hibernação ininterruptível
+	R=Em execução ou Executável
+	S=Em hibernação
+	T=Interrompido ou Rastreável
+	Z=Zumbi
+TIME - Tempo de cpu é o total de tempo de processamento desde que o processo
+foi iniciado. Pode ser cumutado para incluir o tempo cumulativo de todos os filhos
+anteriores.
+COMMAND - O nome do comando que criou o processo.
+
 

@@ -76,7 +76,7 @@
 <p>
 	info coreutils (seção 13)<br>
 	ls(1) chmod(1) chown(1) chgrp(1)<br>
-	unmask(1)
+	umask(1)
 </p>
 
 ### Capítulo 8 - Monitoramento e gerenciamento de processos no linux
@@ -87,9 +87,14 @@
 	ps(1) signal(7)<br>
     bash(1) builtins(1) ps(1) sleep(1)<br>
     kill(1) killall(1) pgrep(1) pkill(1) pstree(1) w(1)<br>
+    top(1) uptime(1)
 </p>
 
+### Capítulo 9 - Controle de Serviços e Daemons
 
+<p>
+    systemd(1) systemd.unit(5) systemd.service(5) systemd.socket(5) systemctl(1)
+</p>
 
 #### HAVE A GOOD READ!
 
