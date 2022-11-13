@@ -96,6 +96,22 @@
     systemd(1) systemd.unit(5) systemd.service(5) systemd.socket(5) systemctl(1)
 </p>
 
-#### HAVE A GOOD READ!
+### Capítulo 10 - Configuração e proteção do SSH
+
+<p>
+    ssh(1) hostname(1) <br>
+    ssh-keygen(1) ssh-copy-id(1) ssh-agent(1) ssh-add(1) <br>
+    sshd_config(5)
+</p>
+
+### Capítulo 11 - Análise e armazenamento de logs
+
+<p>
+    systemd-journald.service(8) rsyslogd(8) rsyslog.conf(5) <br>
+    logger(1) logrotate(8) <br>
+    journalctl(1) systemd.journal-fields(7) systemd.time(7) <br>
+    systemd-journald.conf(5) systemd-journald(8) <br>
+    timedatectl(1) tzselect(8) chronyd(8) chrony.conf(5) chronyc(1)
+</p>
 
 ##### Readme.md status: Em Progresso...
