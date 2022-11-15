@@ -52,7 +52,27 @@ DEFINIÇÕES BÁSICAS
 		
 		Atenção, alguns poucos softwares podem não seguir as convenções acima
 		expostas, não utilizando: - ou -- como elemento diferenciador entre
-		opções e argumentos.
+		opções e argumentos. Alguns chamando opções de subcomandos de um comando
+		como é o caso do systemctl(1).
+
+		Algumas softwares podem ter o seguinte formato de opções com argumentos:
+
+			--opcao='argumento'
+			-o='argumento'
+
+		Mas geralmente fucionam assim também:
+
+			--opcao argumento
+			-o argumento
+
+		·ARGUMENTO:
+		Geralmente define o alvo do comando ou descreve detalhes para uma opção
+		Exemplos:
+			cat /etc/services
+			echo -e ' argumento\n argumento'
+			man 1 bash
+			qemu-system_i386 -m 1024 -hda ./disco.qcow -display curses
+
 
 ·Terminal → interface baseada em texto capaz de ENTRADA e SAIDA de informações, subdivide-se em:
 	·Console físico → display capaz de exibir texto, teclado.
@@ -169,6 +189,7 @@ chsh - mudar o shell padrão do sistema.
 ARQUIVOS:
 cd - mudar o diretório, navegar pelos diretórios.
 ls - imprime na tela o conteúdo do diretório em que você se encontra.
+stat - mostra os metadados (status) de um arquivo ou de um sistema de arquivos.
 tree - imprime visualmente em interface de texto a árvore de diretórios (requer instalação)
 dir - lista o conteúdo de um diretório (como no Windows)
 rm - remove (deleta) o arquivo passado por parâmetro(-r para deleção recursiva).
@@ -193,7 +214,6 @@ grep - imprime linhas que coincidem com padrões em expressões regulares passad
 cat - une fragmentos para formar um arquivo (concatenação) ou imprime o seu conteúdo no terminal.
 split - corta um arquivo em fragmentos (pedaços)
 pr - converte arquivos de texto para impressão(imprime no terminal)
-stat - mostra o status de um arquivo ou do sistema de arquivos.
 touch - "tocar" altera o carimbo de data/hora de um arquivo para agora ou cria um arquivo vazio novo.
 md5sum - computa e checa mensagem de digestão MD5 (checar integridade de arquivos baixados)
 sha256sum - computa e checa mensagem de digestão SHA256 (checar integridade de arquivos baixados)

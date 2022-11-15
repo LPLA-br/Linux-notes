@@ -29,7 +29,7 @@
 	<br>
 	cp(1) mkdir(1) mv(1) rm(1) rmdir(1)
 	<br>
-	ln(1)<br>
+	ln(1) inode(1)<br>
 	info ln 
 	<br>
 	glob(7) isalpha(3) path_resolution(7)
