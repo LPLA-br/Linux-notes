@@ -1,0 +1,271 @@
+GERENCIAMENTO DE REDES
+
+Conceitos fundamentais:
+	endereçamento e roteamento de redes de um servidor.
+
+Modelo de rede TCP/IP
+	Conjunto de abstrações simplificado em quatro camadas
+	que descreve como diferentes protocolos interagem para
+	que os computadores enviem tráfego de uma máquina para
+	a outra pela internet.
+	Como especificado na RFC 1122:
+	REQUISITOS PARA HOSTS DE INTERNET-CAMADAS DE COMUNICAÇÃO
+
+	·Aplicativo
+		Cada Aplicativo tem especificações de comunicação.
+		Clientes e servidor se comunicam idepedêntemente de arquitetura.
+		Protocolos comuns:
+		SSH		login remoto
+		HTTPS		web segura
+		NFS ou CIFS	compartilhamento de arquivos
+		SMTP		distribuição de e-mail
+
+	·Transporte
+		TCP Transport Control Protocol	comunicação confiável orientada a conexões.
+			Falhas são tratadas.
+			não tão rápido.
+			garantia de integridade.
+
+		UDP User Datagram Protocol	datagrama sem correção.
+			Falhas não são tratadas.
+			rápido>>
+			integridade duvidosa.
+
+		/etc/services	- lista de portas conhecidas e registradas.
+
+	·Internet (camada de rede)
+		Carrega os dados do host de origem para o host de destino.
+		Cada host tem um endereço IP e um prefixo usado para determinar
+		os endereços de rede.
+		Protocolos:
+			IPv4
+			IPv6 (mais endereços)
+		Roteadores são utilizados para conectar as redes.
+
+	·Link (ou acesso a mídias)
+		fornece a conexão a mídias físicas. Exemplos:
+		ethernet cabeada 802.3
+		WLAN sem fio     802.11
+		Cada dispositivo físico tem um endereço de hardware MAC que é usado para
+		identificar o destino dos pacotes no segmento da rede local.
+
+Intefaces de rede no LINUX moderno
+	Nomeclatura antiga:
+		eth0 eth1 eth2 ethN ...
+		problemas com a ordem das conexões
+	
+	Nomeclatura atual:
+	   Primeira parte:
+		ETHERNET: 	en
+		WLAN:		wl
+		WWAN:		ww
+
+	   Segunda parte:
+	   É baseada nas informações fornecidas pelo firmware do servidor ou determinado
+	   pela localização do dispositivo na topologia PCI (Peripheral Component Interconnect)
+
+		oN - Dispositivo inicial e o número de índice fornecido pelo firmware do servidor é N
+		      eno1 é o dispositivo 1 inicial de ethernet. Muitos servidores não fornecem essas informações.
+
+		sN - Indica que esse dispositivo está no slot hotplug PCI N.
+		      ens3 é uma placa de ethernet no slot hotplug PCI 3.
+
+		pMsN -  Indica que esse [e um dispositivo PCI no barramento M no slot N.
+			 wlp4s0 é uma placa WLAN no barramento PCI 4 no slot 0.
+			
+			Se a placa for um dispositivo multifuncional (possível com uma 
+			placa de ethernet com várias portas, ou dispositivos que tenham
+			ethernet mais algum outro recurso), você poderá ver fN adicionado
+			ao nome do dispositivo.
+			 enp0s1f0 é a função 0 da placa de ethernet no barramento 0 no slot 1.
+			 Também pode haver uma segunda interface chamada enp0s1f1,
+			 a função 1 desse mesmo dispositivo.
+
+RELEMBRE: o ip identifica máquinas individuais de qualquer arquitetura
+ em uma rede de comunicação.
+
+REDES IPv4
+Um endereço IPv4 é um número de 32bits (2words, 4bytes) normalmente expresso em base decimal.
+Cada byte é unsigned (sem o primeiro bit indicador, ou não, de negatividade) cada byte vai de 0 até 255.
+255.255.255.255 [Most Significant][Less Significant]
+		rede		  host
+
+O endereço é divido em duas partes: da REDE e do HOST
+
+Todos os hosts na mesma sub-rede que podem se comunicar
+entre si diretamente sem um roteador têm a mesma parte de rede.
+
+Não há dois hosts com a mesma parte host em uma sub-rede.
+Atualmente o tamanho da sub-rede pode variar.
+
+Para saber qual parte é de um endereço IPv4 e rede e host
+o admin deve saber que máscara de rede está atribuida à sub-rede.
+A máscara de rede indica quantos bits do endereço IPv4 pertencem à
+sub-rede. Quanto mais bits estiverem disponíveis para a parte do
+host, maior será o número de hosts possíveis na sub-rede. 
+
+endereço de rede - o menor endereço possível em uma sub-rede
+	(parte do host preenchida por zeros no binário)
+endereço de transmissão - o maior endereço possível em um sub-rede
+ usado para transimitir mensagens de transmissão
+	(parte de host toda em número um em binário)
+
+Máscara de rede
+sintaxe antiga
+	24bits para a parte da rede.
+	255.255.255.0
+
+	rede → classes de endereçamento ip:
+	A B C D E substituido por CIDR em 1993
+	  IDENTIFICADOR	REDE	ID_HOST
+	A 0		7bits	24bits	<-----
+	B 10		14	16
+	C 110		21	8
+		MULTICASTING
+	D 1110		28
+		RESERVED
+	E 1111
+
+sintaxe nova (notação CIDR Classless Inter-Domain Routing)
+ prefixo de rede /24
+
+Ambas as formas dizem: quantos bits à esquerda do ip contribuem
+para seu endereço ip.
+
+NETMASK = máscara de rede.
+
+IPADDRESS
+172.17.5.3	10101100 00010001 00000101 00000011
+NETMASK
+		prefix/16_______
+255.255.0.0	11111111 11111111 00000000 00000000
+		N e t  w  o  r  k H    o    s    t
+
+IPADDRESS
+192.168.5.3	11000000 10101000 00000101 00000011
+
+NETMASK		
+		prefix/24_________________
+255.255.255.0	11111111 11111111 11111111 00000011
+		N   e   t   w   o   r    k H o s  t
+
+CALCULO DO ENDEREÇO DE REDE PARA 192.168.1.107/24
+End.host 	192.168.1.107		11000000 10101000 00000001 01101011
+Prefixo Rede 	/24 (255.255.255.0)	11111111 11111111 11111111 00000000
+End.da Rede	192.168.1.0		11000000 10101000 00000001 00000000
+End.de Trasm.	192.168.1.255		11000000 10101000 00000001 11111111
+
+OUTROS
+10.1.1.18/8
+172.16.181.23/19
+
+127.0.0.1	É o endereço especial "localhost" (Sua propría máquina)
+127.0.0.0/8	Pertence ao sistema local. Comunicação do host com ele mesmo
+		usado protocolos de rede.
+
+ROTEAMENTO IPv4
+tráfego de rede
+	mover de host para host de rede para rede.
+cada host tem: tabela de roteamento [route]
+		que diz a ele como rotear o tráfego de redes
+		específicas.
+Entrada da tabela de roteamento:
+	rede de destino
+	interface usada
+	IP de roteador intermediario
+
+EXEMPLO DE TABELA DE ROTEAMENTO
+Destino			Interface	Roteador (se necessário)
+192.0.2.0/24		wlo1	 
+192.168.5.0/24		enp3s0	 
+0.0.0.0/0 (padrão)	enp3s0		192.168.5.254
+
+servidor DHCP
+	daemon de cliente que consulta o link das configurações
+	de um servidor e da rede e obtém uma concessão para usar
+	essas configurações por um período especifico.
+
+REDES IPv6
+
+O substituto do IPv4
+
+Número de endereços possíveis
+IPv4	4.294.967.296 	endereços
+IPv6	340.282.366.920.938.463.463.374.607.431.768.211.456 endereços
+
+Consiste em um número de 128bits normalmente expresso como oito grupos
+de quatro nibbles (um dígito hexadecimal) separados pos :
+__-- __-- __-- __-- __-- __-- __-- __--
+2001:0db8:0000:0010:0000:0000:0000:0001
+
+Omitindo zeros à esquerda:
+2001:db8:0:10:0:0:0:1
+
+Cadeias longas de zeros são comuns devido ao número enorme
+de endereços. Um ou mais grupos consecutivos de zeros podem
+ser combinados com exatamente um bloco ::
+2001:db8:0:10::1
+
+Elimine zeros à esquerda de um grupo.
+Use :: para ocultar grupos zero.
+
+Indicar porta UDP ou TCP depois de um endereço IPv6:
+[endereçoIPv6]:porta
+[2001:db8:0:10::1]:80
+
+IPv6 é dividido em duas partes:
+	prefixo de rede
+	ID da interface
+
+	n e t w o r k  part I n t e rf a c e Id
+	2001:0db8:0000:0001:0000:0000:0000:0001
+	/48allocations ____
+			↓
+		/16_for_local_subnets
+
+::1/128	localhost o equivalente a 127.0.0.1/8 na interface loopback
+::	 não especificado equivalente a 0.0.0.0
+::/0	 rota padrão equivalente a 0.0.0.0/0
+2000::/3 Endereços unicast globais
+fd00::/8 Endereços locais exclusivos(RFC 4193)
+fe80::/10 Endereços link-local
+ff00::/8  Multicast
+
+
+___________________________________________________________
+DESENHOS DE RODAPÉ do luiz
+
+Roteador = Dispositivo que encaminha pacotes de dados entre redes de
+	   computadores, criando um conjunto de redes de sobreposição.
+
+Redes e hosts ?
+redeA
+	redeA.1
+		redeA.1.a
+			host1
+			host2
+		redeA.1.b
+			host1
+			host2
+	redeA.2
+		redeA.2.a
+			host1
+			host2
+		redeA.2.b
+			host1
+			host2
+redeB
+	redeB.1
+		redeB.1.a
+			host1
+			host2
+		redeB.1.b
+			host1
+			host2
+	redeB.2
+		redeB.2.a
+			host1
+			host2
+		redeB.2.b
+			host1
+			host2
