@@ -2,7 +2,10 @@ MANTENHA SEU DISPOSITIVO DE ARMAZENAMENTO MÓVEL SICRONIZADO COM OS DIRETÓRIOS
 DO SEU SISTEMA OPERACIONAL USANDO O RSYNC.
 fonte: www.bosontreinamentos.com.br
 
+rsync ORIGEM DESTINO
+
 OPÇÕES DO rsync
+
 
 ATENÇÃO:
  rsync -a -v -h /home/fabio
@@ -76,15 +79,35 @@ Exclui (apaga) os arquivos no diretório de origem após o término da
 transferência de dados.
 
 -n
-Modo “dry run” – executa uma tentativa de copiar dados sem realmente copiar
+Modo “dry run” – executa uma tentativa de copiar dados sem realmente copiar	<-IMPORTANTE
 qualquer arquivo.
 
 -v
-Modo verboso, que mostra detalhes sobre a transferência de arquivos.
+Modo verboso, que mostra detalhes sobre a transferência de arquivos. 		<-IMPORTANTE
+
+-H
+perservar links físicos
+
+-A
+Perservar as ACLs
+
+-X
+Preservar os contextos do SELinux
+
+-a --archive equivale a:
+	-r --recusive
+	-l --links	#sincronizar links simbólicos
+	-p --perms
+	-t --times
+	-g --group
+	-o --owner
+	-D --devices	#sicronizar arquivo do dispositivo
+
+[remoteuser@]host:/path		#especificação de host remoto.
 
 EXEMPLOS:
 
-Primeiro backup (copía):
+Primeiro backup (cópia):
   rsync -a -v -h Diretório /mnt/user
 
  Demais (sicroniza):

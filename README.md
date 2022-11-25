@@ -1,9 +1,9 @@
-# Anotações Pessoais -> Públicas
+# Anotações 
 
 <p>
-	Contém anotações pessoais
-	tornadas públicas sobre meus
-	estudos de linux desde 2020.
+	Anotações livres
+    sobre o sistema
+	Linux desde 04/2020
 </p>
 
 ## Referências a manuais utilizadas pelo curso RH124 da RED HAT©
@@ -112,6 +112,33 @@
     journalctl(1) systemd.journal-fields(7) systemd.time(7) <br>
     systemd-journald.conf(5) systemd-journald(8) <br>
     timedatectl(1) tzselect(8) chronyd(8) chrony.conf(5) chronyc(1)
+</p>
+
+### Capítulo 12 - Gerenciamento de redes
+
+<p>
+    services(5) ping(8) biosdevname(1) udev(7)<br>
+    ip-link(8) ip-address(8) ip-route(8) ip(8) pint(8) tracepath(8)
+    traceroute(8) ss(8) netstat(8)<br>
+    NetworkManager(8) nmcli(1) nmcli-examples(5) nm-settings(5) hostnamectl(1)
+    resolv.conf(5) hostname(5)<br>
+    hosts(5) getent(1) host(1)
+</p>
+
+### Capítulo 13 - Gerenciamento e transferência de arquivos
+
+<p>
+    tar(1) gzip(1) gunzip(1) bzip(1) bunzip2(1) xz(1) unxz(1)<br>
+    scp(1) sftp(1)<br>
+    rsync(1)
+</p>
+
+### Capítulo 14 - Instalação e atualização de pacotes de software
+
+<p>
+    subscription-manager(8) rct(8)<br>
+    rpm(8) rpm2cpio(8) cpio(1) rmpkeys(8)<br>
+    yum(1) yum.conf(5) yum-config-manager(1)
 </p>
 
 ##### Readme.md status: Em Progresso...

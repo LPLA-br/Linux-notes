@@ -258,13 +258,16 @@ xargs - permite que você execute o mesmo comando em um grande número de arquiv
 history - imprime uma lista contendo os últimos comandos digitados por VOCÊ.
 seq - imprimir uma sequência de números.
 env - imprimir variáveis de ambiente do seu usuário atual.
-set - 
+set - .
 export - exporta a definição de uma nova variável de ambiente.
 watch - executa periodicamente um comando para "assistir-lhe" à saída.
+timeout - executa um comando por tempo limitado.
+sleep - para a execução por um certo período de tempo.
 
 GERENCIAMENTO DE PACOTES (softwares de seu sistema):
     FEDORA LINUX(E o Red Hat® enterprise Linux®):
-        dnf - gerenciador de pacotes de auto nível.
+        dnf - gerenciador de pacotes de baixo nível.
+	yum - gerenciador de pacotes de alto nível.
     DEBIAN LINUX
         apt - gerenciador de pacotes de auto nível.
 	dpkg - manuseador de pacotes de baixo nível, vide suas subunidades.

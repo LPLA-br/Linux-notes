@@ -21,7 +21,7 @@ Modelo de rede TCP/IP
 		SMTP		distribuição de e-mail
 
 	·Transporte
-		TCP Transport Control Protocol	comunicação confiável orientada a conexões.
+		TCP Transmission Control Protocol comunicação confiável orientada a conexões.
 			Falhas são tratadas.
 			não tão rápido.
 			garantia de integridade.
@@ -231,6 +231,174 @@ fd00::/8 Endereços locais exclusivos(RFC 4193)
 fe80::/10 Endereços link-local
 ff00::/8  Multicast
 
+Um endereço link-local no IPv6 é não roteável usado somente
+para comunicar com os hosts em um link de rede específico.
+Cada interface de rede do sistema é configurada automaticamente
+com um endereço link-local na rede fe80::/64
+Para garantir exclusividade a ID de interface do endereço link-local
+é construída a partir do end. de hardware da Eternet da interface de
+rede. O procedimento comum para converter o endereço MAC de 48 bits
+em uma id de interface de 64bits é inverter o bit7 do ender.
+MAC e inserir ff:fe entre seus dois bytes intermediarios.
+
+Prefixo de rede: fe80::/64
+Endereço MAC:	 00:11:22:aa:bb:cc
+Endereço link-local: fe80::211:22ff:feaa:bbcc/64
+
+Os endereços link-local de outras máquinas podem ser usados como
+endereços normais por outros hosts no mesmo link. Como cada link
+tem uma rede fe80::/64 nele, a tabela de roteamento não pode
+ser usada para selecionar a interface de saida corretamente.
+O link para usar ao falar com um endereço link-local dever ser
+espeficicado com um identificador de escopo %
+
+ping6 fe80::211:22ff:feaa:bbcc%ens3
+
+Multicast __NO__
+
+IPv4 pode ser configurado:
+	Em interface manualmente pelo admin
+	ou dinâmicamente a partir da rede usando DHCP.
+IPv6:
+	Manual e a dois métodos dinâmicos, um dos quais: DHCPv6
+
+NOMES DE HOST E ENDEREÇOS IP___________________________________
+Mapeiamento de nome de host e seu IP
+
+/etc/hosts
+
+Pode colocar o IPv(4|6) com um nome para servir de
+alias para tal IP.
+
+DNS (Domain Name System)
+ Domínio identifica o serviço EX: www.SERVIÇO.com
+	Domínio: Nome único, pago anualmente, TLDs(Top-Level Domain(s))
+	Hospedagem: Armazenamento, pago mensalmente, espaço memória, recursos (python, php, etc...)
+
+DNS é uma rede distribuída de servidores que fornece mapeamentos
+de nomes de host a endereços IP. Para que o serviço de nomes
+funcione, o host precisa ser apontado para um nameserver. Esse
+nameserver não precisa estar na mesma sub-rede, mas apenas ser
+alcançado pelo host. Normalmente, isso é configurado por meio
+do DHCP ou de uma configuração estática em um arquivo chamado de
+
+/etc/resolv.conf
+
+ANATOMIA DE UMA URL (DNS):
+ 	 Protocolo://Subdomínio.Domínio.tld.tld/caminho
+ 	 https://suap.ifrn.edu.br/accounts/login/
+ 	 https://www.github.com/LPLA-br
+			TLDs: .iuo .gov .com
+			Domínio: github
+			Sub Domínio: www.
+			Caminho: LPLA-br
+
+CONFIGURAÇÃO DE REDE
+ COLETA DAS INFORMAÇÕES DA INTERFACE DE REDE
+  ip link show
+   endereço mac da interface listado após: link/ether
+  ip addr show
+   visualizar informações do dispositivo e de endereço:
+    uma interface pode ter vários endereços IPv(6|4)
+    atividade = (UP|DOWN)
+    link/ether MAC
+    inet  endereço IPv4 exteção_de_prefixo_de_rede escopo
+    inet6 endereço IPv6 exteção_de_prefixo_de_rede escopo(normalmente global)
+    inet6 com escopo link → usado apenas para comunicação no link de ethernet local.
+
+ ESTATÍSTICAS DE DESEMPENHO.
+  ip -s link show ens3
+
+ VERIFICAÇÃO DE CONECTIVIDADE ENTRE HOSTS
+  ping -c3 endereçoIPv4
+  ping6 -c3 endereçoIPv6%interface
+
+ SOLUÇÃO DE PROBLEMAS DE ROTEAMENTO
+  ip route
+  ip -6 route
+    
+ RASTREAMENTO DE ROTAS USADAS PELO TRÁFEGO
+  (traceroute|tracepath) URL
+  (traceroute|tracepath) -6 URL
+
+ SOLUÇÃO DE PROBLEMAS DE PORTAS E SERVIÇOS
+  Serviços TCP usam soquetes como pontos finais para comunicação
+  e são compostos de um ende. IP um protocolo e um número de porta.
+  Os serviços ESCUTAM as portas padrão.
+  Os clientes usam uma porta disponível aleatoriamente.
+  	/etc/services <- lista de portas conhecidas e registradas.
+  ss -ta
+  ss(8) estatísticas de soquete (esta ferramenta pretende substituir o netstat do pacote net-tools)
+   -n -t -u -l -a -p -A inet
+
+  CONFIGURAÇÃO DE REDES PELA LINHA DE COMANDO (NetworkManager [daemon])
+
+   config-file = /etc/sysconfig/network-scripts/ifcfg-NOME
+
+   device → interface de rede
+   connection → conjunto de configurações definiveis para um dispositivo.
+   Somente uma connection ativa por vez por interface.
+   Cada conexão tem um id que a identifica.
+
+   nmcli dev status		#status
+   nmcli con show		#listar todas connections.
+   nmcli con show --active	#apenas as ativas.
+   nmcli con up NOME		#ativar connection.
+   nmcli dev dis DEVICE		#desativar connection.
+   nmcli con show NOME 		#visualizar configurações atuais.
+   nmcli con mod NOME		#alterar configurações de uma conexão nm-settings(5).
+   nmcli con del NOME		#desconecta dispositivo e rm em /etc/../ifcfg-NOME
+
+
+   exemplo de adição de conexão de rede:
+   nmcli con add con-name eno2 type ethernet ifname eno2 \
+   ipv4.address 192.168.0.5/24 ipv4.gateway 192.168.0.254
+
+   outro exemplo:
+   nmcli con add con-name eno2 type ethernet ifname eno2 \
+   ipv6.address 2001:db8:0:1::c000:207/64 ipv6.gateway 2001:db8:0:1::1 \
+   ipv4.address 192.0.2.7/24 ipv4.gateway 192.0.2.1
+
+  Para definir o endereço IPv4 para 192.0.2.2/24 e o gateway padrão para 192.0.2.254
+  da conexão static-ens3:
+	[root@host ~]# nmcli con mod static-ens3 ipv4.address 192.0.2.2/24 \
+	ipv4.gateway 192.0.2.254
+
+	NOTA
+	# O comando esta modificando o arquivo de configuração (diretivas)
+	# em /etc/sysconfig/network-scripts/ifcfg-NOMECONEXCAO
+	# O arquivo também pode ser editado manualmente.
+
+  Para definir o endereço IPv6 para 2001:db8:0:1::a00:1/64 e o gateway padrão para
+  2001:db8:0:1::1 da conexão static-ens3:
+	[root@host ~]# nmcli con mod static-ens3 ipv6.address 2001:db8:0:1::a00:1/64 \
+	ipv6.gateway 2001:db8:0:1::1
+
+EDIÇÂO DOS ARQUIVOS DE CONFIGURAÇÃO
+  Por motivos de compatibilidade retroativa, as diretivas
+  salvas nesse arquivo possuem nomes e sitaxe diferentes
+  dos nomes de configuração para as diretivas ifcfg-*
+  
+  Vide as diretivas em ~/Downloads/redhat/nmConfigDiret
+  Vide as opções de configuração de ipv4 de /etc/sysconfig/network-scripts/ifcfg-NOME
+  ~/Downloads/redhat/nmConfigModf.png
+
+  Após modificar os arquivos de configuração execute 
+  nmcli con reload
+  e re-inicie a interface
+  nmcli con down "static-ens3"
+  nmcli con up "static-ens3"
+
+CONFIGURAÇÃO DE NOMES DE HOST E RESOLUÇÃO DE NOMES
+  /etc/hostname		nome do host corrente.
+  hostnamectl(1)
+  hostname(1)
+  host(1)
+
+  /etc/hosts		arquivo de resolução de nomes IP ←→ hostname
+  /etc/resolv.conf	arquivo com o IPv4 e IPv6 do servidor DNS
+  /etc/nsswitch.conf	The Name Service Switch (NSS) configuration file
+  getent(1)
 
 ___________________________________________________________
 DESENHOS DE RODAPÉ do luiz
@@ -269,3 +437,15 @@ redeB
 		redeB.2.b
 			host1
 			host2
+
+IPROUTE2	NET-TOOLS
+
+ip		ifconfig vconfig
+		route
+ss		net-stat
+arp		ip
+bridge		brctl
+
+dhcp_services		dhcpcd|NetworkManager|dhclient
+managers		systemd-networkd|NetworkManager|netctl|ConnMan
+dns_resolv		systemd-resolved|NetworkManager

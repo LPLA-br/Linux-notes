@@ -109,3 +109,13 @@ Configuração: /etc/sshd_config
 	PasswordAutentication no
 
  Opções comentadas no arquivo indica: padrão
+
+TRANSFERÊNCIA DE ARQUIVOS ENTRE HOSTS
+   Do local para o remoto
+	scp file1 file2 ... fileN remoteuser@remotehost:/path
+   Do remoto para o local
+   	scp remoteuser@remotehost:/path
+FORMA INTERATIVA
+   sftp remoteuser@remotehost
+   	put - upload
+	get - download
