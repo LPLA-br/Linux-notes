@@ -169,6 +169,7 @@ lsmod - mostra o status dos módulos do kernel linux.
 lscpu - mostra informação sobre a arquitetura do CPU.
 lspci - listar todos os dispositivos PCI.
 lsblk - lista os dispositivos de bloco sda, sdb, hda, hdb etc..
+lsof - lista arquivos abertos por processos.
 blkid -  localiza e imprime atributos de dispositivos de bloco (pendrive, ssd, hdd...)
 parted - programa de manipulação de partições do projeto gnu (faz o mesmo que fdisk, podendo redimensionar partições)
 fdisk -  programa de particionamento de discos avançado.
@@ -187,6 +188,9 @@ crontab - cron tarefas para usuários individuais.
 chsh - mudar o shell padrão do sistema.
 
 ARQUIVOS:
+locate - busca por arquivo através de um indice gerado regularmente.
+updatedb - atualiza a base de dados mlocate do comando locate (acima).
+find - busca avancada por um arquivo seguindo critérios descritos na linha de comando.
 cd - mudar o diretório, navegar pelos diretórios.
 ls - imprime na tela o conteúdo do diretório em que você se encontra.
 stat - mostra os metadados (status) de um arquivo ou de um sistema de arquivos.

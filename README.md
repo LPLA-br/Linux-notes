@@ -141,4 +141,12 @@
     yum(1) yum.conf(5) yum-config-manager(1)
 </p>
 
+### Capítulo 15 - Acesso a sistemas de arquivos Linux
+
+<p>
+    df(1) du(1)<br>
+    lslbk(8) mount(8) umount(8) lsof(8)<br>
+    locate(1) updatedb(8) find(1)
+</p>
+
 ##### Readme.md status: Em Progresso...
