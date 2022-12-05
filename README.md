@@ -149,4 +149,16 @@
     locate(1) updatedb(8) find(1)
 </p>
 
-##### Readme.md status: Em Progresso...
+### Capítulo 16 - Análise e obteção de suporte (específico do RHEL)
+
+<p>
+    cockpit(1) cockpit-ws(8) cockpit.conf(5)<br>
+    sosreport(1)<br>
+    insights-client(8) insights-client.conf(5)
+</p>
+
+##### RH124 Red Hat System Administration | 8.0
+
+<img src='./Certificado.png'/>
+
+#### ------------------------------------------
