@@ -233,9 +233,12 @@ tail - imprime as últimas N linhas de um arquivo de texto.
 sort - ordenar linhas de arquivos de texto ou saída de outros programas.
 ln - cria links simbólicos ou físicos entre arquivos.
 wc - imprime número de newlines ’\n’(linhas), palavras e caracteres de um texto.
+tr - modifica ou deleta caracteres de arquivo passado para stdin.
+uniq - reporta ou omite linha idênticas repetidas.
 sed - editor stream para filtrar e transformar texto (útil em scripts)
 awk - escaneador de padrões e linguagem de processamento de texto plano (útil em scripts)
 cut - corta seções específicas de cada linha de um arquivo de texto organizado.
+sync - sincronizar escritas de disco em cache para o disco.
 
 EDITORES_DE_TEXTO:
 vim - editor de texto avançado com atalhos complexos.
@@ -257,8 +260,10 @@ exit - causa terminação normal de processo do shell.
 clear - limpa a tela do terminal.
 ps - mostra processos e seus pids de forma estática (veja o manual)
 pstree - imprime árvore de processos no terminal.
-kill - envia sinal para um processo usando seu número PID.
-xargs - permite que você execute o mesmo comando em um grande número de arquivos.
+kill - envia SINAL para um processo usando seu número PID.
+pkill - envia SINAL para processo pelo nome.
+killall - mata processos pelo nome.
+xargs - construir e executar linhas de comando advidas da entrada padrão.
 history - imprime uma lista contendo os últimos comandos digitados por VOCÊ.
 seq - imprimir uma sequência de números.
 env - imprimir variáveis de ambiente do seu usuário atual.

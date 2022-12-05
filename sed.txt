@@ -15,7 +15,11 @@ OPÇÕES
 
 COMANDOS E REGEX
 	Substituição s
-		'[NUMERO]s/regex/replacement/flags' veja: g
+		'[NUMERO]s/regex/replacement/flags'
+		NUMERO indica LINHA em que o sed irá atuar.
+	
+	separando por ponto e vírgula
+		's///g; //p; s///gc;'
 	
 	Busca:
 		'/padrão/p'
@@ -24,5 +28,5 @@ COMANDOS E REGEX
 		s substituir
 
 	flags:
-		g	substiui os econtrados por replacement.
+		g	substiui os encontrados por replacement.
 		p	imprime o espaço de 
