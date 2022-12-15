@@ -17,13 +17,13 @@ _Resumo_do_conteúdo____________________________________________________
 /lib	Bibliotecas compartilhadas essenciais e modulos do kernel.
 /media	Contém pontos de montagem para midias removíveis.
 /mnt	Ponto de montagem temporária de sistemas de arquivos.
-/proc	Diretório virtual contendo informações do sistema.
+/proc	Diretório virtual contém informações de processos e do kernel (sistema de arquivos proc).
 /root	Diretório home do superusuário administrativo root.
 /sbin	Binários essenciais de administração do sistema.
 /sys	Diretório virtual contendo informações organizadas do sistema.
 /tmp	Arquivos temporários que são deletados no desligamento do sistema.
 /usr	Hieraquia secundária de diretórios.
-/var	Dados variáveis, como logs do sistema dentre outros. variáveis e persistentes
+/var	Dados variáveis, como logs do sistema por exemplo. variáveis e persistentes
 /srv	Dados para serviços fornecidos pelo sistema.
 /opt	pacotes de aplicativos e programas adicionais.
 /run	Dados de tempo de execução com ID processos. variável e temporário
