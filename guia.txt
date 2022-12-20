@@ -186,6 +186,7 @@ ldd - imprimir dependências de um executável de bibliotecas compartilhadas.
 cron - daemon para executar tarefas agendadas.
 crontab - cron tarefas para usuários individuais.
 chsh - mudar o shell padrão do sistema.
+setfont - muda a fonte do console tty (por padrão: /usr/share/kbd/consolefonts/lat2-16.psfu.gz)
 
 ARQUIVOS:
 locate - busca por arquivo através de um indice gerado regularmente.
@@ -239,6 +240,7 @@ sed - editor stream para filtrar e transformar texto (útil em scripts)
 awk - escaneador de padrões e linguagem de processamento de texto plano (útil em scripts)
 cut - corta seções específicas de cada linha de um arquivo de texto organizado.
 sync - sincronizar escritas de disco em cache para o disco.
+fmt - formatador de texto plano (--width=NUM).
 
 EDITORES_DE_TEXTO:
 vim - editor de texto avançado com atalhos complexos.
