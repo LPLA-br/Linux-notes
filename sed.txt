@@ -24,8 +24,12 @@ COMANDOS E REGEX
 	Busca:
 		'/padrão/p'
 
+    Deleção:
+        '/padrão/d'
+
 	Comandos:
 		s substituir
+        d deletar
 
 	flags:
 		g	substiui os encontrados por replacement.
